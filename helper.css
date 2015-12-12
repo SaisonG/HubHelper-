@@ -1,0 +1,8 @@
+.hhPopup {
+    display:none;
+    position:absolute;
+    border:1px solid #000;
+    opacity: 1;
+    background-color: #FFFFFF;
+    z-index: 100;
+}

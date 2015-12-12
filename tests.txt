@@ -1,0 +1,59 @@
+valid link - [hubski](https://hubski.com)
+trailing slash - [hubski](https://hubski.com/)
+link with space - [hub ski](https://hubski.com)
+bolded link - +[hubski](https://hubski.com)+
+quoted link - |[hubski](https://hubski.com)|
+italic link text - [*hubski*](https//hubski.com)
+black link text - ~[hubski](https//hubski.com)~
+
+not a url - [hubski](hubski)
+invalid bolded link - +[hubski](https://hubski.com+)
+invalid link - [hubski](https//hubski.com)
+invalid character link - [hubski](https//\|hubski.com)
+bold url link - [hubski](+https//hubski.com+)
+bold in the middle of the link - [hubski](https//h+ubski+.com)
+empty text - [](https://hubski.com)
+empty url - [hubski]()
+newline in text - [hubski](https//hubski.com)
+nested link - [hubski](https//hubski.com) [google](https://www.google.com)
+just link text - [hubski]
+just parens - (https//hubski.com)
+
+
+dangling bold - +I'm dangling 
+dangling italic - *I'm dangling  
+dangling quote - |I'm dangling 
+dangling blackout - ~I'm dangling 
+
+only bold 
+*
+**
+|
+||
+~
+~~
+
+bold italic valid - +*testypants*+
+bold italic invalid - +*testypants+*
+
+extra bold - ++megabold++
+
+double escape bold - \\+to bold or not to bold+
+
+bold outside quote +bold |quote|+
+bold italic quote blackout |~+**+~|
+
+should not be bold <b>not bold</b>
+
+
+Text surrounded by asterisks (*) is italicized.
+Text surrounded by plus signs (+) is bolded.
+Text surrounded by vertical bars (|) is quoted. If you double-click a paragraph, it will be quoted.
+Text surrounded by tildes (~) is blocked out.
+Symbols such as *, +, |, and ~ can be used literally by placed a \ in front of the text.
+A user's name surrounded by at signs (@) links to their profile, and the user is notified that you mentioned them.
+A word surrounded by hash signs (#) becomes a tag and links to posts with that tag.
+Text after a blank line that is indented by two or more spaces is reproduced verbatim in a different font.
+URLs become links.
+Text can link to URLs by using the following format: [linked text](http://theurl.com)
+Image URLs (.png, .tif, and .jpg) will embed automatically.

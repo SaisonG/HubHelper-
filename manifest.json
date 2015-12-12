@@ -1,0 +1,30 @@
+{
+    "name": "Hubski Helper",
+    "description": "Tools and Tricks for Hubski",
+    "version": "0.1",
+    "permissions": [
+        "tabs","<all_urls>"
+    ],
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+    "permissions": [
+        "https://hubski.com/*",
+        "http://hubski.com/*"
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "content_scripts": [
+        {
+        "matches": [
+            "http://hubski.com/*",
+            "https://hubski.com/*"
+            ],
+        "css": ["helper.css"],
+        "js": ["jquery.min.js", "commentator.js", "launcher.js"],
+        "run_at": "document_end"         // pay attention to this line
+        }
+    ], 
+    "manifest_version":2
+}
