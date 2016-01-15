@@ -1,3 +1,8 @@
+function testypants(){
+
+}
+
+
 function addCommentHooks() {
     var wrappers = document.getElementsByClassName("commentform");
     var commentDiv = wrappers[0];
@@ -13,6 +18,8 @@ function addCommentHooks() {
     form.appendChild(previewBox);
 }
 
+
+
 function previewText(){
     var wrappers = document.getElementsByClassName("commentform");
     var commentDiv = wrappers[0];
@@ -20,52 +27,69 @@ function previewText(){
     var commentbox = areas[0];
     var preview = $('div#previewbox')[0];  
         
-    preview.innerHTML = commentbox.value;
+    preview.innerHTML = getHTML(commentbox.value);
 }
+
 
 function getHTML(unparsedText)
 {
-    var lastquote = -1;
-    var lastaddr = -1; 
-    var linktext = '';
-    var html = '';
-    var linkbackup = ''; 
-    
-    for (var i = 0,  i < unparsedText.length; i++) {
-        if(unparsedText[i] == '[')
-        {
-            lastquote = i; 
-            linkbackup = '[';
-        }
-        else if(unparsedText[i] == ']')
-        {
-            if(lastquote != -1)
-            {
-                linktext = unparsedText.substring(lastquote, i); 
-                linkbackup += ']';
-            }
-        }
-        else if(unparsedText[i] == '(')
-        {
-            linkbackup += ']';
-        }
-        else if(unparsedText[i] == ')')
-        {
-            var linkaddr = '';
-            if(lastquote != -1 && linkaddr != '' && )
-            {
-                linkbackup += ']';
-                lastquote == -1
-            }
-        }
-        else if(lastquote != -1)
-        {
-            linkbackup += unparsedText[i];
-        }
-        else
-        {
-            html += unparsedText[i];
-        }
-        
-    }
+	var linkname = '';
+	var namebuilding = false; 
+	var linkurl = ''; 
+	var urlbuilding = false; 
+	var fullhtml = ''; 
+	var bolding = false; 
+	var italicsing = false; 
+	
+    for (var i = 0;  i < unparsedText.length; i++) {
+		if(unparsedText[i] == '[')
+		{
+			namebuilding = true;
+			linkname = '';
+		    linkurl = '';
+		}else if(unparsedText[i] == ']')
+		{
+			namebuilding = false;
+		}else if((unparsedText[i] == '(') && i > 1 && unparsedText[i-1] == ']' && linkname != '')
+		{			
+			namebuilding = false;
+			urlbuilding = true;
+			linkurl = '';
+		}else if(unparsedText[i] == ')' && linkurl != '')
+		{	
+			namebuilding = false;
+			urlbuilding = false;
+			fullhtml += "<a href=\""+linkurl+"\">"+linkname+"</a>";
+		}else if (namebuilding)
+		{
+			linkname += unparsedText[i];
+		}else if (urlbuilding)
+		{
+			linkurl += unparsedText[i];
+		}else if(unparsedText[i] == '*')
+		{
+			if(italicsing)
+			{
+				fullhtml += "</i>";
+			}else
+			{
+				fullhtml += "<i>";
+			}
+			italicsing = !italicsing; 
+		}else if(unparsedText[i] == '+')
+		{
+			if(bolding)
+			{
+				fullhtml += "</b>";
+			}else
+			{
+				fullhtml += "<b>";
+			}
+			bolding = !bolding; 
+		}else
+		{
+			fullhtml += unparsedText[i];
+		}
+	}
+	return fullhtml;
 }
